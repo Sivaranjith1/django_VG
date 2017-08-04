@@ -1,2 +1,0 @@
-hei,
-django test
