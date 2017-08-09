@@ -1,5 +1,6 @@
 import bs4 as bs
 import urllib.request
+#MADE BY RANJITH
 
 home = urllib.request.urlopen('http://www.vg.no/').read()
 soup = bs.BeautifulSoup(home, 'lxml')
