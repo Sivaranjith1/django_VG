@@ -18,4 +18,4 @@ def article_list(list):
 
 if __name__ == '__main__':
     article_list(list)
-    print(list)
+    print('\n'.join(list))
