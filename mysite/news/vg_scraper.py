@@ -1,5 +1,6 @@
 import bs4 as bs
 import urllib.request
+#MADE BY RANJITH
 
 home = urllib.request.urlopen('http://www.vg.no/').read()
 soup = bs.BeautifulSoup(home, 'lxml')
@@ -30,4 +31,4 @@ def article_read(article):
 if __name__ == '__main__':
     article_list(list)
     #print('\n'.join(list))
-    article_read(list[0])
+
