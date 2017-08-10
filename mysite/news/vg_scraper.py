@@ -26,9 +26,12 @@ def article_read(article):
         title = header.find('h1', class_='main-title')
         title = title.text.strip()
         image = header.find('img').get('src')
+        image_text = str(header.find('img').get('alt')).replace('<p>','').replace('</p>','')
+        print(image_text)
     article_title()
 
 if __name__ == '__main__':
     article_list(list)
     #print('\n'.join(list))
+    article_read(list[0])
 
