@@ -11,11 +11,23 @@ def article_list(list):
         try:
             link = link.get('href')
             if "http" not in link:
-                list.append("http://www.vg.no/"+link)
+                if 'nyheter/' in link:
+                    list.append("http://www.vg.no"+link)
         except:
             pass
 
+def article_read(article):
+    site = urllib.request.urlopen(article).read()
+    soup = bs.BeautifulSoup(site, 'lxml')
+
+    def article_title():
+        header = soup.find('div', class_='reg-grid-full')
+        title = header.find('h1', class_='main-title')
+        title = title.text.strip()
+        image = header.find('img').get('src')
+    article_title()
 
 if __name__ == '__main__':
     article_list(list)
-    print('\n'.join(list))
+    #print('\n'.join(list))
+    article_read(list[0])
