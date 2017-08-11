@@ -5,6 +5,7 @@ import urllib.request
 home = urllib.request.urlopen('http://www.vg.no/').read()
 soup = bs.BeautifulSoup(home, 'lxml')
 list = []
+main_li = []
 
 def article_list(list):
     for article in soup.find_all('div',class_='article-content'):
@@ -27,8 +28,31 @@ def article_read(article):
         title = title.text.strip()
         image = header.find('img').get('src')
         image_text = str(header.find('img').get('alt')).replace('<p>','').replace('</p>','')
-        print(image_text)
-    article_title()
+        return [image, image_text, title]
+
+    def article_main(list):
+        main = soup.find('div', class_="article-body-text")
+        para = main.find_all('p')
+        for i in para:
+            i = str(i).replace('<p>','').replace('</p>','')
+            if '<' not in i:
+                main_li.append('<p>'+i+'</p><br>')
+        ingress = main.find('div', id ='preamble')
+        ingress = str(ingress).replace('</div>', '')
+        ingress = ingress.split('>')
+        innled = ''
+        for i in ingress:
+            if '<' not in i:
+                innled = i
+        kjede = ''
+        for i in main_li:
+            kjede = kjede + str(i)
+        list.append(innled)
+        list.append(kjede)
+
+    top = article_title()
+    article_main(top)
+    print(top)
 
 if __name__ == '__main__':
     article_list(list)
