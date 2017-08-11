@@ -1,12 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>django_vg</title>
-</head>
-<body>
+{% extends "news_header.html" %}
+
+{% block title %}Django VG{% endblock %}
+
+{% block style %}{% endblock %}
+
+{% block head %}{% endblock %}
+
+{% block content %}
     {% for post in object_list %}
         <h5><a href="{{post.id}}"> {{post.title}} </a></h5>
     {% endfor %}
-</body>
-</html>
+{% endblock %}
+
+{# {% block footer %}{% endblock %} #}

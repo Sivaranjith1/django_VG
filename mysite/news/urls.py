@@ -8,5 +8,6 @@ urlpatterns = [
                                 template_name="news_home.html")),
     url(r'^(?P<pk>\d+)$', DetailView.as_view(model = Article,
                                              template_name="news_article.html")),
-    url(r'^header/', views.header, name='header')
+    url(r'^header/', views.header, name='header'),
+    url(r'^update/', views.update, name='update')
 ]

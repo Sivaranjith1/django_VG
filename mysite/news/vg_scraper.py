@@ -1,12 +1,13 @@
 import bs4 as bs
 import urllib.request
 #MADE BY RANJITH
-def ting():
-    home = urllib.request.urlopen('http://www.vg.no/').read()
-    soup = bs.BeautifulSoup(home, 'lxml')
-    list = []
-    main_li = []
 
+home = urllib.request.urlopen('http://www.vg.no/').read()
+soup = bs.BeautifulSoup(home, 'lxml')
+list = []
+main_li = []
+
+def scraper():
     def article_list(list):
         for article in soup.find_all('div',class_='article-content'):
             link = article.find('a')
@@ -26,8 +27,15 @@ def ting():
             header = soup.find('div', class_='reg-grid-full')
             title = header.find('h1', class_='main-title')
             title = title.text.strip()
-            image = header.find('img').get('src')
-            image_text = str(header.find('img').get('alt')).replace('<p>','').replace('</p>','')
+            try:
+                image = header.find('img').get('src')
+            except:
+                image = 'https://ichef.bbci.co.uk/news/660/cpsprodpb/37B5/production/_89716241_thinkstockphotos-523060154.jpg'
+
+            try:
+                image_text = str(header.find('img').get('alt')).replace('<p>','').replace('</p>','')
+            except:
+                image_text = "ingen bilder"
             return [image, image_text, title]
 
         def article_main(list):
@@ -54,9 +62,13 @@ def ting():
         article_main(top)
         return top
 
-    if __name__ == '__main__':
-        article_list(list)
-        #print('\n'.join(list))
-        hei = article_read(list[0])
-        print(hei)
-ting()
+    article_list(list)
+    out = []
+    for ob in list:
+        out.append(article_read(ob))
+    #for i in reversed(out):
+     #   print(i)
+    return out
+
+if __name__ == '__main__':
+    out = scraper()
