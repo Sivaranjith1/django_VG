@@ -9,6 +9,18 @@
 {% block content %}
     <h1>{{object.title}}</h1>
     <img src="{{object.image_title}}">
+
+    <div class="bilde_text">
+        <p>{{object.image_text}}</p>
+    </div>
+
+    <div class="ingress">
+        <p>{{object.ingress}}</p>
+    </div>
+
+    <div class="hoveddel">
+        {{object.hoveddel|safe}}
+    </div>
 {% endblock %}
 
 {# {% block footer %}{% endblock %} #}

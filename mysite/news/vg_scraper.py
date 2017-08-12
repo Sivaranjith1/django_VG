@@ -72,3 +72,4 @@ def scraper():
 
 if __name__ == '__main__':
     out = scraper()
+    #print(out)
